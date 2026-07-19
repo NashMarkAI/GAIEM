@@ -91,3 +91,6 @@ data/
 *.zip
 *.tar
 *.tar.gz
+
+# Microsoft Word temporary lock files
+~$*.docx
