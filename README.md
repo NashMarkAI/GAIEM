@@ -180,6 +180,122 @@ The MTS-Dialog repository also contains augmented datasets and a correlation-stu
 
 ---
 
+
+## 🧩 Pluggable Domain and Dataset Architecture
+
+GAIEM is not restricted to healthcare, clinical triage or the datasets used in the frozen v0.1.0 baseline. The clinical benchmark demonstrates the method, but the framework is designed so that different datasets, professional domains, legal frameworks, regulatory materials and controlled source collections can be connected to the same evaluation architecture.
+
+The underlying process remains consistent:
+
+**domain dataset or controlled source material**  
+→ source auditing and preparation  
+→ terminology, concept and relationship mapping  
+→ controlled multi-turn benchmark construction  
+→ deterministic expected-state definition  
+→ model execution  
+→ drift, hallucination, factuality, instruction and retention evaluation  
+→ preserved evidence, charts and reporting
+
+### ⚖️ Legal and Regulatory Evaluation
+
+A legal implementation could connect GAIEM to an authorised and version-controlled dataset containing:
+
+- legislation and statutory provisions;
+- procedural rules;
+- regulatory frameworks;
+- judgments and case-law extracts;
+- contractual clauses;
+- legal definitions;
+- pleaded facts and evidence;
+- case chronologies;
+- party identities and procedural positions;
+- identified duties, rights and alleged breaches.
+
+A controlled legal benchmark could then test whether a model:
+
+- preserves the correct legal framework throughout a continuing case discussion;
+- distinguishes established facts, disputed allegations, evidence and legal conclusions;
+- retains dates, parties, procedural stages and pleaded positions accurately;
+- identifies relevant duties or potential breaches without inventing provisions;
+- avoids fabricating authorities, quotations, judgments or citations;
+- maintains jurisdictional and procedural boundaries;
+- recognises when the supplied material is insufficient to support a conclusion;
+- avoids changing the meaning of legislation or case evidence through generalised narration;
+- preserves corrections and later instructions that supersede earlier information;
+- reconstructs the complete legal state when explicitly asked.
+
+This would allow GAIEM to expose whether a model begins accurately but later drifts from the legislation, changes the facts, merges allegations with evidence, invents legal authority or produces confident narration unsupported by the controlled record.
+
+### 🔌 Configurable Benchmark Components
+
+GAIEM operates as a configurable evaluation framework rather than a fixed collection of questions.
+
+Users can configure or replace:
+
+- the source dataset;
+q- the professional or regulatory domain;
+- benchmark conversations;
+- the number of sessions;
+- the number of turns within each session;
+- observation states and recall probes;
+- expected facts and protected terms;
+- instructions and prohibited behaviours;
+- factual aliases and equivalent expressions;
+- domain-specific evaluators;
+- pass thresholds;
+- evidence requirements;
+- reporting and chart outputs;
+- local or external model providers;
+- model versions, quantisation and inference settings.
+
+A benchmark may contain nine turns, ninety turns or a substantially longer controlled conversation. Observation states can be positioned at fixed intervals, after important facts are introduced, following corrections or at points where contextual interference is expected.
+
+### 🌐 Expansion into Other Domains
+
+The same architecture can be applied to:
+
+- healthcare and clinical safety;
+- law and legal procedure;
+- regulatory compliance;
+- public administration;
+- finance and accounting;
+- engineering and technical assurance;
+- scientific research;
+- customer service;
+- education;
+- insurance;
+- procurement;
+- safeguarding;
+- internal organisational policy.
+
+Each domain can introduce its own controlled sources, terminology maps, factual relationships, risk conditions and evaluator rules while retaining the same evidence-preserving GAIEM execution process.
+
+### 📊 What GAIEM Reveals
+
+GAIEM does not assume that every model will drift or hallucinate in every individual response.
+
+It creates a controlled and repeatable method for revealing:
+
+- whether a failure occurs;
+- when it first appears;
+- which fact, instruction or source boundary is lost;
+- whether the failure is omission, contradiction, invention or semantic drift;
+- whether the failure worsens as the conversation grows;
+- whether the model recovers after correction;
+- whether the same failure repeats across model versions or providers.
+
+The framework therefore shows what a model is actually doing across a continuing conversation rather than relying on a capability claim, model card or isolated demonstration.
+
+### 🧱 Versioning and Comparability
+
+Material changes to benchmark content, source datasets, evaluator behaviour, domain configuration or expected-state definitions must be released under a new benchmark or framework version.
+
+The frozen GAIEM v0.1.0 baseline remains unchanged.
+
+Healthcare, legal, regulatory and other domain-specific benchmark packages can therefore be developed as separate, versioned evaluation profiles while remaining comparable through the same controlled execution, evidence-preservation and reporting architecture.
+
+---
+
 ## Provider and Model Status
 
 - Ollama — implemented as the local model-execution provider.
