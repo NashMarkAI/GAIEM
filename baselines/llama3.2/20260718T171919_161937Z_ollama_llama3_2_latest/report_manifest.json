@@ -1,0 +1,69 @@
+{
+  "run_id": "20260718T171919_161937Z_ollama_llama3_2_latest",
+  "generated_at": "2026-07-18T17:28:30.392378+00:00",
+  "source_run_directory": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest",
+  "source_evidence": {
+    "run_manifest.json": {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/run_manifest.json",
+      "sha256": "1593b8e98fee515c1dbe7011dc9c961d586eb4f678c54c59f65a28b81d1062ea"
+    },
+    "run_summary.json": {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/run_summary.json",
+      "sha256": "e369c69ea02be2535de1d3da35f7b4437878829634f6c5647188768f9d6054db"
+    },
+    "raw_provider_responses.jsonl": {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/raw_provider_responses.jsonl",
+      "sha256": "a01b18514b3575aca746c005613dc2120e5f239bc6005aee632b6ee7d6c50084"
+    },
+    "transcripts.json": {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/transcripts.json",
+      "sha256": "a25e6a76aaddc362d1755fd729586e447f1488a74ae06d53ecf2bc1f868fad01"
+    },
+    "evaluation_results.jsonl": {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/evaluation_results.jsonl",
+      "sha256": "38938aeac885628191ce7037ffa5eb7e922fdf829e7f5ccdc0937fa9c73dbe60"
+    },
+    "evaluation_scores.csv": {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/evaluation_scores.csv",
+      "sha256": "835169261530c804c8f0d71fd91f2680d9cd65bb09c9226499f3f553a378e97d"
+    }
+  },
+  "report": {
+    "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/benchmark_report.md",
+    "sha256": "dd0b919330d7657e2bb1451366bd9d6c37fe13004797e0ebb92f9500dabe8764"
+  },
+  "charts_generated": 6,
+  "charts": [
+    {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/charts/01_evaluator_pass_rate.png",
+      "sha256": "7251bd2e8f471e21c94ace89038e75d6d2265e3a20f479547adcc836becb7bce"
+    },
+    {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/charts/02_evaluator_mean_score.png",
+      "sha256": "4f6c0c0115d26ac92dc3430c721f24dd8f2baaaab6091770ee34e115d3e36be7"
+    },
+    {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/charts/03_session_pass_rate.png",
+      "sha256": "294f5eda4b3dc9798066c29470a8fd6ac7c761bd11683c944fd7f3840d7b0fd5"
+    },
+    {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/charts/04_observation_state_trajectory.png",
+      "sha256": "d1e6fe3b592f98b5ed056821de47acfd0b75b124a3a8e765aa1ee29b9d20df74"
+    },
+    {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/charts/05_response_latency.png",
+      "sha256": "58afc23f7417e62094514ab5e552a0fc3f6e694ce522b18ccf712924319f903a"
+    },
+    {
+      "path": "/Users/bobbyramdin/Sites/localhost/print/genai-evaluation-matrix/results/20260718T171919_161937Z_ollama_llama3_2_latest/charts/06_token_usage.png",
+      "sha256": "0a736be87310287a9b753e16ca09aa6b1c7ee7c37614cd1f0c61a444161663fd"
+    }
+  ],
+  "skipped_charts": [],
+  "generator": {
+    "file": "report_generator.py",
+    "scope": "stored evidence visualisation only",
+    "provider_called": false,
+    "evaluators_rerun": false
+  }
+}

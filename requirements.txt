@@ -1,0 +1,34 @@
+# ==========================================================
+# GenAI Evaluation Matrix
+# Python Dependencies
+# ==========================================================
+
+openai
+
+python-dotenv
+
+requests
+
+pandas
+
+numpy
+
+matplotlib
+
+scikit-learn
+
+sentence-transformers
+
+bert-score
+
+rouge-score
+
+nltk
+
+scipy
+
+networkx
+
+tqdm
+
+pytest
