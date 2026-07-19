@@ -24,6 +24,162 @@ provides either an API or a local inference endpoint.
 
 ---
 
+## 🧪 What the Baseline Measures
+
+The frozen GAIEM v0.1.0 baseline contains four independent nine-turn conversations, producing thirty-six model responses under identical observation states and evaluator conditions.
+
+Those four conversations examine three broader real-world risk areas.
+
+### 🩺 1. Clinical State Retention and Safety — `TRIAGE-CHAT-009`
+
+The clinical conversation tests whether a model can preserve and reconstruct a progressively developing patient account.
+
+The tested state includes:
+
+- chest pain and chest tightness Safety — `TRIAGE-CHAT-009`
+
+The clinical conversation tests whether a model can preserve and reconstruct a progressively;
+- shortness of breath;
+- dizziness;
+- symptom onset and progression;
+- worsening symptoms during exertion;
+- warfarin use;
+- previous blood-clot history;
+- penicillin allergy;
+- pauses while speaking;
+- patient uncertainty and anxiety;
+- incidental or distracting information introduced later in the conversation.
+
+The purpose is not to test whether the model can produce a diagnosis. It is to test whether clinically material information remains present, accurate and correctly separated from uncertainty and distraction as the conversation develops.
+
+This matters because failure in a clinical interaction is not limited to hallucinating a diagnosis. A system may also create risk by forgetting medication, losing an allergy, changing the chronology, omitting a worsening symptom or failing to reconstruct the complete patient state when asked.
+
+The clinical benchmark is therefore relevant to clinicians, clinical-system designers, healthcare AI developers, auditors and organisations evaluating conversational systems for safety-sensitive use.
+
+### 📚 2. Source and Factual Integrity
+
+Two benchmark conversations examine information integrity from different directions.
+
+`SOURCE-CHAT-009` tests whether the model:
+
+- distinguishes supplied source material from unsupported claims;
+- maintains uncertainty where the evidence is incomplete;
+- avoids inventing citations, authors, findings or conclusions;
+- preserves source restrictions across later turns;
+- resists pressure to convert an unsupported claim into a factual statement.
+
+`FACT-CHAT-009` tests whether the model:
+
+- retains named project facts;
+- preserves ownership, dates, deadlines and responsibilities;
+- reconstructs cumulative project state;
+- avoids replacing established facts with plausible alternatives;
+- recalls the complete record during explicit later probes.
+
+These sessions test whether the model can maintain an evidence boundary and preserve factual state rather than merely generating a plausible response.
+
+### 📋 3. Instruction Persistence and Behavioural Stability — `INSTRUCTION-CHAT-009`
+
+The instruction-retention conversation tests whether the model continues to follow user-defined requirements as the exchange becomes longer.
+
+It examines whether the model can preserve:
+
+- required output format;
+- prohibited content;
+- wording constraints;
+- ordering rules;
+- scope restrictions;
+- instructions established several turns earlier;
+- later corrections that supersede earlier instructions.
+
+This measures whether the model remains operationally aligned with the continuing task instead of following only the most recent prompt.
+
+## 🩺 Clinical Dataset Provenance
+
+The clinical-language work is grounded in the **MTS-Dialog dataset**, published with the EACL 2023 research paper *An Empirical Study of Clinical Note Generation from Doctor-Patient Encounters*.
+
+MTS-Dialog contains approximately 1,700 short doctor-patient conversations with corresponding clinical section summaries. Its main dataset includes 1,201 training conversations, 100 validation conversations and two 200-conversation test sets, including material used in the MEDIQA-Chat and MEDIQA-Sum 2023 challenges. ([GitHub][1])
+
+GAIEM currently uses:
+
+`MTS-Dialog/Main-Dataset/MTS-Dialog-TrainingSet.csv`
+
+The source dataset is not inserted directly into the benchmark without review. GAIEM contains a separate clinical-data preparation pipeline.
+
+### `clinical_data_loader.py`
+
+The loader:
+
+- reads the MTS-Dialog training CSV;
+- preserves the source file, source row and source identifier;
+- records the source-file integrity digest;
+- parses clinician and patient turns;
+- separates accepted records from malformed or rejected records;
+- preserves the original wording;
+- does not modify the source dataset;
+- does not generate diagnoses or call an external model.
+
+### `clinical_language_curator.py`
+
+The curator maps patient language into controlled clinical concepts, including:
+
+- chest pain;
+- shortness of breath;
+- dizziness;
+- anticoagulant use;
+- allergy;
+- exertion;
+- onset;
+- progression;
+- indigestion or heartburn.
+
+It also distinguishes:
+
+- positive symptom statements;
+- symptoms explicitly denied;
+- uncertain statements;
+- short answers whose meaning depends on the preceding clinician question;
+- acute wording from historical wording.
+
+### `clinical_candidate_selector.py`
+
+The selector ranks audited conversations for the chest-pain triage scenario using transparent clinical-language and red-flag criteria.
+
+The mapped terms include:
+
+- chest pain, pressure and tightness;
+- breathlessness and difficulty breathing;
+- dizziness;
+- warfarin and anticoagulant use;
+- worsening with walking or exertion;
+- allergy language;
+- indigestion and heartburn.
+
+The selector does not diagnose, rewrite source language or automatically convert a patient record into a benchmark case.
+
+## 🧩 How the Clinical Benchmark Was Constructed
+
+The GAIEM triage conversation uses **original composite patient language informed by the audited and curated MTS-Dialog material**.
+
+It does not reproduce one identifiable patient conversation as the benchmark.
+
+The construction process was:
+
+**MTS-Dialog source records**  
+→ audited clinician/patient turn parsing  
+→ accepted and rejected record separation  
+→ clinical-language concept mapping  
+→ chest-pain and red-flag candidate ranking  
+→ reviewed vocabulary and conversational patterns  
+→ original controlled nine-turn GAIEM triage conversation  
+→ deterministic expected facts and observation-state testing
+
+This gives the clinical scenario real conversational relevance while retaining a controlled benchmark state against which factual retention, omission, drift, uncertainty and hallucination can be measured.
+
+The MTS-Dialog repository also contains augmented datasets and a correlation-study dataset with expert fact-based scoring of generated clinical summaries. The current GAIEM v0.1.0 clinical preparation pipeline directly uses the main training dataset; the augmented and correlation-study files are retained as separate source resources and must not be described as part of the measured baseline unless they are explicitly incorporated into a later benchmark version.
+
+---
+
 ## Provider and Model Status
 
 - Ollama — implemented as the local model-execution provider.
@@ -154,3 +310,5 @@ Current Version
 **0.1 Alpha**
 
 This project is under active development.
+
+[1]: https://github.com/abachaa/MTS-Dialog "GitHub - abachaa/MTS-Dialog: A collection of doctor-patient conversations and corresponding clinical notes and summaries."
